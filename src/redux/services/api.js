@@ -3,7 +3,7 @@ import { getData } from "../../utils/core"
 import { AUTH_TOKEN_KEY } from "../../utils/storage";
 
 
-const baseUrl = "http://localhost:3001";
+const baseUrl = "https://medicare-pms-5c8030e1abf8.herokuapp.com";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: baseUrl,
