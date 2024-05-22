@@ -8,7 +8,6 @@ import { useGetPatientsQuery } from '../../redux/services/patient';
 
 function PatientMedicineServiceModal({ closeModal, isOpen, patient, selected, setSelected }) {
   const { data: patientsData, isLoading, refetch: refetchPatients } = useGetPatientsQuery({})
-  // const [selected, setSelected] = useState(patientsData?.[0]);
 
   const datas = patient
     ? patientsData

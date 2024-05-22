@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import Layout from '../../Layout';
-// import { invoicesData } from '../../components/Datas';
 import { toast } from 'react-hot-toast';
 import { Link, useParams } from 'react-router-dom';
 import { IoArrowBackOutline } from 'react-icons/io5';

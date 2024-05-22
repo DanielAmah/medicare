@@ -40,11 +40,6 @@ export const MenuDatas = [
     path: '/patients',
     icon: TbUsers,
   },
-  // {
-  //   title: 'Receptions',
-  //   path: '/receptions',
-  //   icon: HiOutlineUsers,
-  // },
   {
     title: 'Doctors',
     path: '/doctors',
@@ -66,21 +61,11 @@ export const MenuDatas = [
     path: '/invoices',
     icon: TbFileInvoice,
   },
-  // {
-  //   title: 'Services',
-  //   path: '/services',
-  //   icon: MdOutlineInventory2,
-  // },
-  // {
-  //   title: 'Medicine',
-  //   path: '/medicine',
-  //   icon: RiMedicineBottleLine,
-  // },
-  // {
-  //   title: 'Campaigns',
-  //   path: '/campaigns',
-  //   icon: MdOutlineCampaign,
-  // },
+  {
+    title: 'Services',
+    path: '/services',
+    icon: MdOutlineInventory2,
+  },
   {
     title: 'Settings',
     path: '/settings',
@@ -1032,11 +1017,6 @@ export const medicineData = [
 ];
 
 export const patientTab = [
-  // {
-  //   id: 1,
-  //   title: 'Medical Records',
-  //   icon: TbChartHistogram,
-  // },
   {
     id: 2,
     title: 'Appointments',
@@ -1052,16 +1032,6 @@ export const patientTab = [
     title: 'Payments',
     icon: RiMoneyDollarCircleLine,
   },
-  // {
-  //   id: 5,
-  //   title: 'Images',
-  //   icon: RiImageLine,
-  // },
-  // {
-  //   id: 6,
-  //   title: 'Medical Chart',
-  //   icon: RiStethoscopeLine,
-  // },
   {
     id: 7,
     title: 'Patient Information',
@@ -1100,11 +1070,6 @@ export const doctorTab = [
     title: 'Invoices',
     icon: RiFileList3Line,
   },
-  // {
-  //   id: 6,
-  //   title: 'Access Control',
-  //   icon: TbLockAccess,
-  // },
   {
     id: 7,
     title: 'Change Password',

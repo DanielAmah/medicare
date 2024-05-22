@@ -18,51 +18,10 @@ import { useGetRecentTransactionsQuery } from '../../redux/services/dashboard'
 function Payments() {
   const { data } = useGetPaymentSummaryQuery({})
   const { data: recentTransactionsData, isLoading: loadingRecentTransactions } = useGetRecentTransactionsQuery({})
-  // const [status, setStatus] = useState(sortsDatas.status[0]);
-  // const [method, setMethod] = useState(sortsDatas.method[0]);
-  // const [dateRange, setDateRange] = useState([new Date(), new Date()]);
-  // const [startDate, endDate] = dateRange;
   const navigate = useNavigate();
 
   console.log(recentTransactionsData, 'paymentData')
-  // const sorts = [
-  //   {
-  //     id: 2,
-  //     selected: status,
-  //     setSelected: setStatus,
-  //     datas: sortsDatas.status,
-  //   },
-  //   {
-  //     id: 3,
-  //     selected: method,
-  //     setSelected: setMethod,
-  //     datas: sortsDatas.method,
-  //   },
-  // ];
-  // boxes
-  // const boxes = [
-  //   {
-  //     id: 1,
-  //     title: 'Today Payments',
-  //     value: '4,42,236',
-  //     color: ['bg-subMain', 'text-subMain'],
-  //     icon: BiTime,
-  //   },
-  //   {
-  //     id: 2,
-  //     title: 'Monthly Payments',
-  //     value: '12,42,500',
-  //     color: ['bg-orange-500', 'text-orange-500'],
-  //     icon: BsCalendarMonth,
-  //   },
-  //   {
-  //     id: 3,
-  //     title: 'Yearly Payments',
-  //     value: '345,70,000',
-  //     color: ['bg-green-500', 'text-green-500'],
-  //     icon: MdOutlineCalendarMonth,
-  //   },
-  // ];
+  
 
   const editPayment = (id) => {
     navigate(`/payments/edit/${id}`);
