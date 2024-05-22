@@ -2,11 +2,6 @@
 
 Medicare - Patient Management System admin dashboard
 
-## Author
-
-- [Zpunet](https://github.com/author-github-username)
-- Contact: [Email](mailto:info@codemarketi.com)
-
 ## Description
 
 Medicare is a patient management system
@@ -33,17 +28,9 @@ npm start
 
 ## Deployment
 
-- Contact: [Email](mailto:info@codemarketi.com)
+Deploy using vercel
 
 ## Technologies Used
 
-- React
-- Tailwind Css
-
-## Contributing
-
-- Contact: [Email](mailto:info@codemarketi.com)
-
-## License
-
-- Contact: [Email](mailto:info@codemarketi.com)
+- React JS
+- Tailwind CSS
