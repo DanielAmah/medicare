@@ -19,12 +19,10 @@ const Uploader = ({ handleFileChange, image }) => {
 
       reader.onload = (e) => {
         setImageUrl(e.target.result)
-        // handleFileChange(e.target.result); // Setting the image as a data URL directly
         setLoading(false);
       };
       reader.readAsDataURL(file);
 
-      // handleFileChange(acceptedFiles);
     } catch (error) {
       console.log(error, 'error')
       toast.error('Upload failed');

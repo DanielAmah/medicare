@@ -119,54 +119,6 @@ function Appointments() {
     setData({});
   };
 
-  // const events = [
-  //   {
-  //     id: 0,
-  //     start: moment({ hours: 7 }).toDate(),
-  //     end: moment({ hours: 9 }).toDate(),
-  //     color: '#FB923C',
-  //     title: 'John Doe',
-  //     message: 'He is not sure about the time',
-  //     service: servicesData[1],
-  //     shareData: {
-  //       email: true,
-  //       sms: true,
-  //       whatsapp: false,
-  //     },
-  //   },
-  //   {
-  //     id: 1,
-  //     start: moment({ hours: 12 }).toDate(),
-  //     end: moment({ hours: 13 }).toDate(),
-  //     color: '#FC8181',
-  //     title: 'Minah Mmassy',
-  //     message: 'She is coming for checkup',
-  //     service: servicesData[2],
-  //     shareData: {
-  //       email: false,
-  //       sms: true,
-  //       whatsapp: false,
-  //     },
-  //   },
-
-  //   {
-  //     id: 2,
-  //     start: moment({ hours: 14 }).toDate(),
-  //     end: moment({ hours: 17 }).toDate(),
-  //     color: '#FFC107',
-  //     title: 'Irene P. Smith',
-  //     message: 'She is coming for checkup. but she is not sure about the time',
-  //     service: servicesData[3],
-  //     shareData: {
-  //       email: true,
-  //       sms: true,
-  //       whatsapp: true,
-  //     },
-  //   },
-  // ];
-
-  // console.log(events, 'events');
-  // console.log(appointmentData, 'appointmentData');
 
   // onClick event handler
   const handleEventClick = (event) => {

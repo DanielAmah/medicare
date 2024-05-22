@@ -335,8 +335,6 @@ export function PatientTable({ data, functions, used, handleDelete }) {
           icon: RiDeleteBin6Line,
           onClick: () => {
             handleDelete(id)
-            // deletedPatients({ id: id })
-            // toast.error('This feature is not available yet');
           },
         },
       ]
@@ -445,7 +443,6 @@ export function DoctorsTable({ data, functions, doctor, handleDelete }) {
         icon: RiDeleteBin6Line,
         onClick: () => {
           handleDelete(id)
-          // toast.error('This feature is not available yet');
         },
       },
     ]
