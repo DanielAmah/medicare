@@ -101,7 +101,7 @@ function Dashboard() {
               <p className="flex gap-4 text-sm items-center">
                 Today{' '}
                 <span className="py-1 px-2 bg-subMain text-white text-xs rounded-xl">
-                  {recentTransactionsData?.total_today / 100}$
+                  {recentTransactionsData?.total_today}$
                 </span>
               </p>
             </div>

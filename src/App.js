@@ -28,6 +28,7 @@ import NotFound from './screens/NotFound';
 import Login from './screens/Login';
 import Register from './screens/Register'
 import { store } from '../src/redux';
+import RequireAuth from './RequireAuth';
 
 function App() {
   Aos.init();
@@ -39,34 +40,34 @@ function App() {
       {/* Routes */}
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<RequireAuth><Dashboard /></RequireAuth>} />
           {/* invoce */}
-          <Route path="/invoices" element={<Invoices />} />
-          <Route path="/invoices/create" element={<CreateInvoice />} />
-          <Route path="/invoices/edit/:id" element={<EditInvoice />} />
-          <Route path="/invoices/preview/:id" element={<PreviewInvoice />} />
+          <Route path="/invoices" element={<RequireAuth><Invoices /></RequireAuth>} />
+          <Route path="/invoices/create" element={<RequireAuth><CreateInvoice /></RequireAuth>} />
+          <Route path="/invoices/edit/:id" element={<RequireAuth><EditInvoice /></RequireAuth>} />
+          <Route path="/invoices/preview/:id" element={<RequireAuth><PreviewInvoice /></RequireAuth>} />
           {/* payments */}
-          <Route path="/payments" element={<Payments />} />
-          <Route path="/payments/edit/:id" element={<EditPayment />} />
-          <Route path="/payments/preview/:id" element={<PreviewPayment />} />
+          <Route path="/payments" element={<RequireAuth><Payments /></RequireAuth>} />
+          <Route path="/payments/edit/:id" element={<RequireAuth><EditPayment /></RequireAuth>} />
+          <Route path="/payments/preview/:id" element={<RequireAuth><PreviewPayment /></RequireAuth>} />
           {/* patient */}
-          <Route path="/patients" element={<Patients />} />
-          <Route path="/patients/preview/:id" element={<PatientProfile />} />
-          <Route path="/patients/create" element={<CreatePatient />} />
-          <Route path="/patients/visiting/:id" element={<NewMedicalRecode />} />
+          <Route path="/patients" element={<RequireAuth><Patients /></RequireAuth>} />
+          <Route path="/patients/preview/:id" element={<RequireAuth><PatientProfile /></RequireAuth>} />
+          <Route path="/patients/create" element={<RequireAuth><CreatePatient /></RequireAuth>} />
+          <Route path="/patients/visiting/:id" element={<RequireAuth><NewMedicalRecode /></RequireAuth>} />
           {/* doctors */}
-          <Route path="/doctors" element={<Doctors />} />
-          <Route path="/doctors/preview/:id" element={<DoctorProfile />} />
+          <Route path="/doctors" element={<RequireAuth><Doctors /></RequireAuth>} />
+          <Route path="/doctors/preview/:id" element={<RequireAuth><DoctorProfile /></RequireAuth>} />
           {/* reception */}
-          <Route path="/receptions" element={<Receptions />} />
+          <Route path="/receptions" element={<RequireAuth><Receptions /></RequireAuth>} />
           {/* others */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/appointments" element={<Appointments />} />
-          <Route path="/campaigns" element={<Campaings />} />
-          <Route path="/medicine" element={<Medicine />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/settings" element={<Settings />} />
+          <Route path="/appointments" element={<RequireAuth><Appointments /></RequireAuth>} />
+          <Route path="/campaigns" element={<RequireAuth><Campaings /></RequireAuth>} />
+          <Route path="/medicine" element={<RequireAuth><Medicine /></RequireAuth>} />
+          <Route path="/services" element={<RequireAuth><Services /></RequireAuth>} />
+          <Route path="/settings" element={<RequireAuth><Settings /></RequireAuth>} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

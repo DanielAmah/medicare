@@ -80,7 +80,7 @@ function AddAppointmentModal({ closeModal, isOpen, datas }) {
   const handleSubmit = async () => {
     const appointmentData = {
       patient_id: selected.id,
-      user_id: doctors.id,
+      // user_id: doctors.id,
       service_id: services.id,
       start_time: startTime.toISOString(),
       end_time: endTime.toISOString(),
@@ -176,18 +176,6 @@ function AddAppointmentModal({ closeModal, isOpen, datas }) {
 
         {/* status && doctor */}
         <div className="grid sm:grid-cols-2 gap-4 w-full">
-          <div className="flex w-full flex-col gap-3">
-            <p className="text-black text-sm">Doctor</p>
-            <Select
-              selectedPerson={doctors}
-              setSelectedPerson={setDoctors}
-              datas={doctorsData}
-            >
-              <div className="w-full flex-btn text-textGray text-sm p-4 border border-border font-light rounded-lg focus:border focus:border-subMain">
-                {doctors?.name} <BiChevronDown className="text-xl" />
-              </div>
-            </Select>
-          </div>
           <div className="flex w-full flex-col gap-3">
             <p className="text-black text-sm">Status</p>
             <Select

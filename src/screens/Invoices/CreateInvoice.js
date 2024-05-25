@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Layout from '../../Layout';
 import {
   Button,
@@ -10,15 +10,37 @@ import {
 import { BiChevronDown, BiPlus } from 'react-icons/bi';
 import PatientMedicineServiceModal from '../../components/Modals/PatientMedicineServiceModal';
 import AddItemModal from '../../components/Modals/AddItemInvoiceModal';
-import { invoicesData, sortsDatas } from '../../components/Datas';
+import { invoicesData, servicesData, sortsDatas } from '../../components/Datas';
 import { toast } from 'react-hot-toast';
 import { BsSend } from 'react-icons/bs';
 import { IoArrowBackOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 import { InvoiceProductsTable } from '../../components/Tables';
 import SenderReceverComp from '../../components/SenderReceverComp';
+import { useGetPatientsQuery } from '../../redux/services/patient';
+import { useGetServicesQuery } from '../../redux/services/service';
+import { storeData } from '../../utils/core';
+import { useNavigate } from 'react-router-dom';
+import { useCreateInvoicesMutation } from '../../redux/services/invoice'
+
+
+const data = []
 
 function CreateInvoice() {
+  const navigate = useNavigate();
+  const { data: patientsData, isLoading, refetch: refetchPatients } = useGetPatientsQuery({})
+  const [createInvoice, { data: createInvoiceData, isSuccess }] = useCreateInvoicesMutation({})
+  const { data: getServicesData, refetch } = useGetServicesQuery({})
+  const [selected, setSelected] = useState(patientsData?.[0]);
+  const [item, setItem] = useState(servicesData[0])
+  const [notes, setNotes] = useState("")
+  const [discount, setDiscount] = useState(0);
+  const [discountAmount, setDiscountAmount] = useState(0)
+  const [taxAmount, setTaxAmount] = useState(0)
+  const [tax, setTax] = useState(0);
+  const [subTotal, setSubTotal] = useState(0);
+  const [grandTotal, setGrandTotal] = useState(0);
+  const [itemArray, setItemArray] = useState([])
   const [dateRange, setDateRange] = useState([
     new Date(),
     new Date(new Date().setDate(new Date().getDate() + 7)),
@@ -26,12 +48,60 @@ function CreateInvoice() {
   const [startDate, endDate] = dateRange;
   const [isOpen, setIsOpen] = useState(false);
   const [itemOpen, setItemOpen] = useState(false);
-  const [currency, setCurrency] = useState(sortsDatas.currency[0]);
+
+  if (isSuccess) {
+    toast.success('Invoice created successfully!')
+    navigate('/invoices')
+  }
 
   // date picker
   const onChangeDates = (update) => {
     setDateRange(update);
   };
+
+  const handleAddItem = (newItem) => {
+    setItemArray([...itemArray, newItem]);
+  };
+
+  useEffect(() => {
+    const calculateTotals = () => {
+      const subTotal = itemArray.reduce((total, item) => total + item.price * item.quantity, 0);
+      const discountAmount = discount;
+      const taxAmount = ((subTotal - discountAmount)) * tax / 100;
+      const grandTotal = subTotal - discountAmount + taxAmount;
+      setDiscountAmount(discountAmount)
+      setTaxAmount(taxAmount)
+      setSubTotal(subTotal);
+      setGrandTotal(grandTotal);
+    };
+
+    calculateTotals();
+  }, [itemArray, discount, tax]);
+
+  console.log(itemArray, 'itemArray')
+
+  const handleNotesChange = (value) => {
+    console.log(value); // Should log the string value of the textarea
+    setNotes(value);
+  };
+
+  const handleSave = () => {
+
+    const params = {
+      patient_id: selected.id,
+      notes: notes,
+      total: grandTotal,
+      tax_rate: tax / 100,
+      discount: discount,
+      subtotal: subTotal,
+      start_date: startDate,
+      end_date: endDate,
+      items: itemArray,
+    }
+
+    console.log(params, 'params')
+    createInvoice(params)
+  }
 
   return (
     <Layout>
@@ -40,12 +110,17 @@ function CreateInvoice() {
           closeModal={() => setIsOpen(!isOpen)}
           isOpen={isOpen}
           patient={true}
+          selected={selected}
+          setSelected={setSelected}
         />
       )}
       {itemOpen && (
         <AddItemModal
           closeModal={() => setItemOpen(!itemOpen)}
           isOpen={itemOpen}
+          item={item}
+          setItem={setItem}
+          addItem={handleAddItem}
         />
       )}
       <div className="flex items-center gap-4">
@@ -85,7 +160,7 @@ function CreateInvoice() {
         </div>
         {/* sender and recever */}
         <SenderReceverComp
-          item={invoicesData?.[1].to}
+          item={selected}
           functions={{
             openModal: () => {
               setIsOpen(!isOpen);
@@ -97,7 +172,7 @@ function CreateInvoice() {
         <div className="grid grid-cols-6 gap-6 mt-8">
           <div className="col-span-6 lg:col-span-4 p-6 border border-border rounded-xl overflow-hidden">
             <InvoiceProductsTable
-              data={invoicesData[1].items}
+              data={itemArray}
               functions={{
                 deleteItem: (id) => {
                   toast.error('This feature is not available yet');
@@ -115,7 +190,7 @@ function CreateInvoice() {
             </button>
           </div>
           <div className="lg:col-span-2 col-span-6 flex flex-col gap-6">
-            <Select
+            {/* <Select
               selectedPerson={currency}
               setSelectedPerson={setCurrency}
               datas={sortsDatas?.currency}
@@ -124,36 +199,40 @@ function CreateInvoice() {
                 <p>{currency?.name}</p>
                 <BiChevronDown className="text-xl" />
               </div>
-            </Select>
+            </Select> */}
             <div className="grid sm:grid-cols-2 gap-6">
               <Input
                 label="Discount"
                 color={true}
                 type="number"
                 placeholder={'3000'}
+                value={discount}
+                onChange={(e) => setDiscount(e.target.value)}
               />
               <Input
                 label="Tax(%)"
                 color={true}
                 type="number"
                 placeholder={'3'}
+                value={tax}
+                onChange={(e) => setTax(e.target.value)}
               />
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Sub Total:</p>
-              <h6 className="text-sm font-medium">$459</h6>
+              <h6 className="text-sm font-medium">{subTotal}</h6>
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Discount:</p>
-              <h6 className="text-sm font-medium">$49</h6>
+              <h6 className="text-sm font-medium">{discountAmount}</h6>
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Tax:</p>
-              <h6 className="text-sm font-medium">$4.90</h6>
+              <h6 className="text-sm font-medium">{taxAmount}</h6>
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Grand Total:</p>
-              <h6 className="text-sm font-medium text-green-600">$6000</h6>
+              <h6 className="text-sm font-medium text-green-600">${grandTotal}</h6>
             </div>
             {/* notes */}
             <Textarea
@@ -161,13 +240,13 @@ function CreateInvoice() {
               placeholder="Thank you for your business. We hope to work with you again soon!"
               color={true}
               rows={3}
+              value={notes}
+              onChange={handleNotesChange}
             />
             {/* button */}
             <Button
-              label="Save & Send"
-              onClick={() => {
-                toast.error('This feature is not available yet');
-              }}
+              label="Create Invoice"
+              onClick={handleSave}
               Icon={BsSend}
             />
           </div>

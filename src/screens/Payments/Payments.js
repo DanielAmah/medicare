@@ -21,7 +21,7 @@ function Payments() {
   const navigate = useNavigate();
 
   console.log(recentTransactionsData, 'paymentData')
-  
+
 
   const editPayment = (id) => {
     navigate(`/payments/edit/${id}`);
@@ -34,7 +34,7 @@ function Payments() {
   return (
     <Layout>
       {/* add button */}
-      <button
+      {/* <button
         onClick={() => {
           toast.error('Exporting is not available yet');
         }}
@@ -42,7 +42,7 @@ function Payments() {
       >
         <p className="hidden text-sm group-hover:block">Export</p>
         <MdOutlineCloudDownload className="text-2xl" />
-      </button>
+      </button> */}
       <h1 className="text-xl font-semibold">Payments</h1>
       {/* boxes */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
@@ -122,7 +122,7 @@ function Payments() {
         <div className="mt-8 w-full overflow-x-scroll">
           <Transactiontable
             data={recentTransactionsData?.transactions}
-            action={true}
+            action={false}
             functions={{
               edit: editPayment,
               preview: previewPayment,

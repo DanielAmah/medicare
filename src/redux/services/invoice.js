@@ -8,8 +8,15 @@ export const invoiceApi = api.injectEndpoints({
         method: "GET"
       }),
     }),
+    createInvoices: builder.mutation({
+      query: (body) => ({
+        url: `/invoices`,
+        method: "POST",
+        body,
+      }),
+    }),
   }),
   overrideExisting: true,
 })
 
-export const { useGetInvoicesQuery } = invoiceApi
+export const { useGetInvoicesQuery, useCreateInvoicesMutation } = invoiceApi
