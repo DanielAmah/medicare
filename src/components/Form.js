@@ -4,7 +4,7 @@ import { BiLoaderCircle } from 'react-icons/bi';
 import DatePicker from 'react-datepicker';
 import { FaCheck } from 'react-icons/fa';
 
-export function Input({ label, name, type, color, placeholder, register, onChange }) {
+export function Input({ label, name, type, color, placeholder, register, onChange, value }) {
   return (
     <div className="text-sm w-full">
       <label
@@ -14,6 +14,7 @@ export function Input({ label, name, type, color, placeholder, register, onChang
         {label}
       </label>
       <input
+        value={value}
         onChange={onChange}
         name={name}
         {...register}

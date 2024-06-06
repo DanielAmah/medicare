@@ -7,11 +7,13 @@ import { Button, Select } from '../components/Form';
 import { ServiceTable } from '../components/Tables';
 import { servicesData, sortsDatas } from '../components/Datas';
 import AddEditServiceModal from '../components/Modals/AddEditServiceModal';
+import { useGetServicesQuery } from '../redux/services/service';
 
 function Services() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [data, setData] = React.useState({});
   const [status, setStatus] = React.useState(sortsDatas.service[0]);
+  const { data: getServicesData, refetch } = useGetServicesQuery({})
 
   const onCloseModal = () => {
     setIsOpen(false);
@@ -51,10 +53,10 @@ function Services() {
         {/* datas */}
 
         <div className="grid md:grid-cols-6 grid-cols-1 gap-2">
-          <div className="md:col-span-5 grid lg:grid-cols-4 xs:grid-cols-2 items-center gap-2">
+          {/* <div className="md:col-span-5 grid lg:grid-cols-4 xs:grid-cols-2 items-center gap-2">
             <input
               type="text"
-              placeholder='Search "teeth cleaning"'
+              placeholder='Search "Medical Consultation"'
               className="h-14 w-full text-sm text-main rounded-md bg-dry border border-border px-4"
             />
             <Select
@@ -66,19 +68,19 @@ function Services() {
                 {status.name} <BiChevronDown className="text-xl" />
               </div>
             </Select>
-          </div>
+          </div> */}
 
           {/* export */}
-          <Button
+          {/* <Button
             label="Export"
             Icon={MdOutlineCloudDownload}
             onClick={() => {
               toast.error('Exporting is not available yet');
             }}
-          />
+          /> */}
         </div>
         <div className="mt-8 w-full overflow-x-scroll">
-          <ServiceTable data={servicesData.slice(1, 100)} onEdit={onEdit} />
+          <ServiceTable data={getServicesData} onEdit={onEdit} />
         </div>
       </div>
     </Layout>

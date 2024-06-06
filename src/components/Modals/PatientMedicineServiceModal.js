@@ -5,16 +5,17 @@ import { memberData, servicesData, medicineData } from '../Datas';
 import { RadioGroup } from '@headlessui/react';
 import { Button } from '../Form';
 import { useGetPatientsQuery } from '../../redux/services/patient';
+import { useGetServicesQuery } from '../../redux/services/service';
 
-function PatientMedicineServiceModal({ closeModal, isOpen, patient, selected, setSelected }) {
+function PatientMedicineServiceModal({ closeModal, isOpen, patient, setSelected, selected }) {
   const { data: patientsData, isLoading, refetch: refetchPatients } = useGetPatientsQuery({})
+  const { data: getServicesData, refetch } = useGetServicesQuery({})
 
+  console.log(selected, 'selected')
   const datas = patient
     ? patientsData
     : // combine medicine and services data and sort by name
-    [...servicesData.slice(1, 100), ...medicineData].sort((a, b) =>
-      a.name > b.name ? 1 : -1
-    );
+    getServicesData
 
   return (
     <Modal
@@ -25,10 +26,10 @@ function PatientMedicineServiceModal({ closeModal, isOpen, patient, selected, se
     >
       <div className="flex-colo gap-6">
         {/* search */}
-        <div className="flex items-center gap-4 w-full border border-border rounded-lg p-3">
+        {/* <div className="flex items-center gap-4 w-full border border-border rounded-lg p-3">
           <input type="text" placeholder="Search" className="w-full" />
           <BiSearch className=" text-xl" />
-        </div>
+        </div> */}
         {/* data */}
         <div className="w-full h-[500px] overflow-y-scroll">
           <RadioGroup value={selected} onChange={setSelected}>

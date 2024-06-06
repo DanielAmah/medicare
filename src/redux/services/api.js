@@ -4,6 +4,7 @@ import { AUTH_TOKEN_KEY } from "../../utils/storage";
 
 
 const baseUrl = "https://medicare-pms-5c8030e1abf8.herokuapp.com";
+// const baseUrl = "http://127.0.0.1:3001";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: baseUrl,

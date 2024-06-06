@@ -28,6 +28,10 @@ import {
 } from 'react-icons/md';
 import { AiOutlineSetting } from 'react-icons/ai';
 import { BiCalendar, BiUserPlus } from 'react-icons/bi';
+import { getData } from '../utils/core';
+import { AUTH_TOKEN_KEY } from '../utils/storage';
+
+const auth = getData(AUTH_TOKEN_KEY)
 
 export const MenuDatas = [
   {
@@ -40,11 +44,13 @@ export const MenuDatas = [
     path: '/patients',
     icon: TbUsers,
   },
-  {
-    title: 'Doctors',
-    path: '/doctors',
-    icon: RiUserHeartLine,
-  },
+  ...(
+    auth?.isAdmin ? [{
+      title: 'Doctors',
+      path: '/doctors',
+      icon: RiUserHeartLine,
+    }] : []
+  ),
 
   {
     title: 'Appointments',
@@ -61,11 +67,13 @@ export const MenuDatas = [
     path: '/invoices',
     icon: TbFileInvoice,
   },
-  {
-    title: 'Services',
-    path: '/services',
-    icon: MdOutlineInventory2,
-  },
+  ...(
+    auth?.isAdmin ? [{
+      title: 'Services',
+      path: '/services',
+      icon: MdOutlineInventory2,
+    }] : []
+  ),
   {
     title: 'Settings',
     path: '/settings',

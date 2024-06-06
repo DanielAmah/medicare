@@ -19,7 +19,6 @@ function PreviewInvoice() {
   const [isOpen, setIsoOpen] = useState(false);
   const [isShareOpen, setIsShareOpen] = useState(false);
 
-  console.log(data, 'are you herexxxxxx')
   const buttonClass =
     'bg-subMain flex-rows gap-3 bg-opacity-5 text-subMain rounded-lg border border-subMain border-dashed px-4 py-3 text-sm';
 
@@ -53,8 +52,8 @@ function PreviewInvoice() {
           </Link>
           <h1 className="text-xl font-semibold">Preview Invoice</h1>
         </div>
-        <div className="flex flex-wrap items-center gap-4">
-          {/* button */}
+        {/* <div className="flex flex-wrap items-center gap-4">
+          button
           <button
             onClick={() => {
               setIsShareOpen(true);
@@ -90,7 +89,7 @@ function PreviewInvoice() {
           >
             Generate To Payment
           </button>
-        </div>
+        </div> */}
       </div>
       <div
         data-aos="fade-up"
@@ -135,32 +134,26 @@ function PreviewInvoice() {
           </div>
           <div className="col-span-6 lg:col-span-2 flex flex-col gap-6">
             <div className="flex-btn gap-4">
-              <p className="text-sm font-extralight">Currency:</p>
-              <h6 className="text-sm font-medium">USD ($)</h6>
-            </div>
-            <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Sub Total:</p>
-              <h6 className="text-sm font-medium">$459</h6>
+              <h6 className="text-sm font-medium">${invoice.subtotal}</h6>
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Discount:</p>
-              <h6 className="text-sm font-medium">$49</h6>
+              <h6 className="text-sm font-medium">${invoice.discount}</h6>
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Tax:</p>
-              <h6 className="text-sm font-medium">$4.90</h6>
+              <h6 className="text-sm font-medium">${((invoice.subtotal - invoice.discount)) * invoice.tax}</h6>
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Grand Total:</p>
-              <h6 className="text-sm font-medium text-green-600">$6000</h6>
+              <h6 className="text-sm font-medium text-green-600">${invoice.total}</h6>
             </div>
             {/* notes */}
             <div className="w-full p-4 border border-border rounded-lg">
               <h1 className="text-sm font-medium">Notes</h1>
               <p className="text-xs mt-2 font-light leading-5">
-                Thank you for your business. We hope to work with you again
-                soon. You can pay your invoice online at
-                www.example.com/payments
+                {invoice.notes}
               </p>
             </div>
           </div>

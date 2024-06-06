@@ -4,28 +4,36 @@ import { BiUserPlus } from 'react-icons/bi';
 import { RiLockPasswordLine } from 'react-icons/ri';
 import PersonalInfo from '../components/UsedComp/PersonalInfo';
 import ChangePassword from '../components/UsedComp/ChangePassword';
+import { useGetDoctorQuery } from '../redux/services/user'
+import { getData } from '../utils/core';
+import { AUTH_TOKEN_KEY } from '../utils/storage';
 
 function Settings() {
+  const auth = getData(AUTH_TOKEN_KEY)
+  const { userId } = auth
+  const { data: userInfo, isLoading } = useGetDoctorQuery({ id: userId })
   const [activeTab, setActiveTab] = React.useState(1);
+
+
   const tabs = [
     {
       id: 1,
       name: 'Personal Information',
       icon: BiUserPlus,
     },
-    {
-      id: 2,
-      name: 'Change Password',
-      icon: RiLockPasswordLine,
-    },
+    // {
+    //   id: 2,
+    //   name: 'Change Password',
+    //   icon: RiLockPasswordLine,
+    // },
   ];
 
   const tabPanel = () => {
     switch (activeTab) {
       case 1:
-        return <PersonalInfo titles={true} />;
-      case 2:
-        return <ChangePassword />;
+        return <PersonalInfo titles={true} userInfo={userInfo} settings={true} />;
+      // case 2:
+      //   return <ChangePassword />;
       default:
         return;
     }
@@ -43,14 +51,14 @@ function Settings() {
           className="col-span-12 flex-colo gap-6 lg:col-span-4 bg-white rounded-xl border-[1px] border-border p-6 lg:sticky top-28"
         >
           <img
-            src="/images/user1.png"
+            src={userInfo?.profile_image_url || "/images/user1.png"}
             alt="setting"
             className="w-40 h-40 rounded-full object-cover border border-dashed border-subMain"
           />
           <div className="gap-2 flex-colo">
-            <h2 className="text-sm font-semibold">Dr. Daudi Mburuge</h2>
-            <p className="text-xs text-textGray">daudimburuge@gmail.com</p>
-            <p className="text-xs">+254 712 345 678</p>
+            <h2 className="text-sm font-semibold">{userInfo?.title} {userInfo?.name}</h2>
+            <p className="text-xs text-textGray">{userInfo?.email}</p>
+            <p className="text-xs">{userInfo?.phone}</p>
           </div>
           {/* tabs */}
           <div className="flex-colo gap-3 px-2 xl:px-12 w-full">
@@ -59,11 +67,10 @@ function Settings() {
                 onClick={() => setActiveTab(tab.id)}
                 key={index}
                 className={`
-                ${
-                  activeTab === tab.id
+                ${activeTab === tab.id
                     ? 'bg-text text-subMain'
                     : 'bg-dry text-main hover:bg-text hover:text-subMain'
-                }
+                  }
                 text-xs gap-4 flex items-center w-full p-4 rounded`}
               >
                 <tab.icon className="text-lg" /> {tab.name}
