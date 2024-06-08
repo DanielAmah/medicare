@@ -12,6 +12,7 @@ import ShareModal from '../../components/Modals/ShareModal';
 import SenderReceverComp from '../../components/SenderReceverComp';
 import { InvoiceProductsTable } from '../../components/Tables';
 import { useGetInvoicesQuery } from '../../redux/services/invoice'
+import { formatCurrency } from '../../utils/core'
 
 function PreviewInvoice() {
   const { data } = useGetInvoicesQuery({})
@@ -147,7 +148,7 @@ function PreviewInvoice() {
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Grand Total:</p>
-              <h6 className="text-sm font-medium text-green-600">${invoice.total}</h6>
+              <h6 className="text-sm font-medium text-green-600">{formatCurrency(invoice.total / 100)}</h6>
             </div>
             {/* notes */}
             <div className="w-full p-4 border border-border rounded-lg">

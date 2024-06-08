@@ -18,8 +18,6 @@ import { useGetDoctorsQuery } from '../../redux/services/user';
 import { useGetServicesQuery } from '../../redux/services/service';
 import { useCreateAppointmentMutation, useGetAppointmentsQuery } from '../../redux/services/appointment';
 
-// edit member data
-
 
 function AddAppointmentModal({ closeModal, isOpen, datas }) {
   const { data: appointmentData, refetch: refetchAppointment } = useGetAppointmentsQuery({})
@@ -55,13 +53,12 @@ function AddAppointmentModal({ closeModal, isOpen, datas }) {
     closeModal()
   }
 
-  // on change share
   const onChangeShare = (e) => {
     setShares({ ...shares, [e.target.name]: e.target.checked });
   };
 
   console.log(datas?.start, datas?.end, 'datas?.start')
-  // set data
+
   useEffect(() => {
     if (datas?.title) {
       setServices(datas?.service);
@@ -73,14 +70,13 @@ function AddAppointmentModal({ closeModal, isOpen, datas }) {
 
 
   const handleDescriptionChange = (value) => {
-    console.log(value); // Should log the string value of the textarea
+    console.log(value);
     setDescription(value);
   };
 
   const handleSubmit = async () => {
     const appointmentData = {
       patient_id: selected.id,
-      // user_id: doctors.id,
       service_id: services.id,
       start_time: startTime.toISOString(),
       end_time: endTime.toISOString(),
@@ -94,11 +90,7 @@ function AddAppointmentModal({ closeModal, isOpen, datas }) {
       }
     };
 
-    console.log(appointmentData, 'appointmentData')
-
     createAppointment(appointmentData)
-    // Send this to the backend
-    // await createAppointment(appointmentData);
   };
 
 

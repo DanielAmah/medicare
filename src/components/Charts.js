@@ -1,6 +1,7 @@
 import React from 'react';
 import Chart from 'react-apexcharts';
 import { useGetDashboardEarningsQuery } from '../redux/services/dashboard';
+import { formatCurrency } from '../utils/core'
 
 export function DashboardSmallChart({ data, colors }) {
   const options = {
@@ -160,7 +161,7 @@ export function DashboardBigChart() {
           fontWeight: 400,
         },
         formatter: function (value) {
-          return value + 'k';
+          return formatCurrency(value);
         },
       },
     },
@@ -211,6 +212,7 @@ export function DashboardBigChart() {
       data: earningData,
     },
   ];
+
 
   return (
     <Chart

@@ -22,7 +22,6 @@ const mockStore = configureStore({
 });
 
 
-// Mock the necessary props
 const props = {
   closeModal: jest.fn(),
   isOpen: true,

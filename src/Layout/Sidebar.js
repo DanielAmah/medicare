@@ -3,7 +3,6 @@ import { MenuDatas } from '../components/Datas';
 import { Link } from 'react-router-dom';
 
 function Sidebar() {
-  // active link
   const currentPath = (path) => {
     const currentPath =
       window.location.pathname.split('/')[1] === path.split('/')[1];

@@ -108,7 +108,6 @@ function AddDoctorModal({ closeModal, isOpen, doctor, refetch, datas }) {
   };
 
   const handleFileChange = (imageUrl) => {
-    // console.log(imageUrl, 'files')
     setFormData({
       ...formData,
       profileImage: imageUrl

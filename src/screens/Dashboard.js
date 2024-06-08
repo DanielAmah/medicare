@@ -19,14 +19,13 @@ import { Transactiontable } from '../components/Tables';
 import { Link } from 'react-router-dom';
 import { useGetDashboardStatisticsQuery, useGetRecentTransactionsQuery, useGetTodayAppointmentsQuery } from '../redux/services/dashboard';
 import { useGetRecentPatientsQuery } from '../redux/services/patient';
+import { formatCurrency } from '../utils/core'
 
 function Dashboard() {
   const { data, isSuccess, isError, isLoading } = useGetDashboardStatisticsQuery({})
   const { data: patientData, isLoading: loadingPatientData } = useGetRecentPatientsQuery({})
   const { data: recentTransactionsData, isLoading: loadingRecentTransactions } = useGetRecentTransactionsQuery({})
   const { data: totalAppointmentData, isLoading: totalAppointmentLoading } = useGetTodayAppointmentsQuery({})
-
-  console.log(totalAppointmentData?.[0], 'data')
 
   const renderDashboardCards = useCallback(() => {
     if (isLoading) return <></>
@@ -51,10 +50,9 @@ function Dashboard() {
             </div>
             <div className="flex flex-col gap-4 col-span-3">
               <h4 className="text-md font-medium">
-                {card.value}
+                {card.id === 3 ? formatCurrency(card.value) : card.value}
                 {
-                  // if the id === 4 then add the $ sign
-                  card.id === 3 ? '$' : '+'
+                  card.id === 3 ? '' : '+'
                 }
               </h4>
               <p className={`text-sm flex gap-2 ${card.color[1]}`}>

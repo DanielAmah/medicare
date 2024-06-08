@@ -8,9 +8,6 @@ const Uploader = ({ handleFileChange, image }) => {
   const [imageUrl, setImageUrl] = useState(image)
   const [loading, setLoading] = useState(false);
 
-  // upload file
-
-  console.log(imageUrl, 'imageUrl')
 
   const onDrop = useCallback(async (acceptedFiles) => {
     setLoading(true);
@@ -31,7 +28,6 @@ const Uploader = ({ handleFileChange, image }) => {
     } finally {
       setLoading(false);
     }
-    // toast.error('This feature is not available yet');
   }, [handleFileChange]);
 
   const { getRootProps, getInputProps } = useDropzone({

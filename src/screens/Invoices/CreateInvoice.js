@@ -19,7 +19,7 @@ import { InvoiceProductsTable } from '../../components/Tables';
 import SenderReceverComp from '../../components/SenderReceverComp';
 import { useGetPatientsQuery } from '../../redux/services/patient';
 import { useGetServicesQuery } from '../../redux/services/service';
-import { storeData } from '../../utils/core';
+import { storeData, formatCurrency } from '../../utils/core';
 import { useNavigate } from 'react-router-dom';
 import { useCreateInvoicesMutation } from '../../redux/services/invoice'
 
@@ -54,7 +54,6 @@ function CreateInvoice() {
     navigate('/invoices')
   }
 
-  // date picker
   const onChangeDates = (update) => {
     setDateRange(update);
   };
@@ -81,7 +80,6 @@ function CreateInvoice() {
   console.log(itemArray, 'itemArray')
 
   const handleNotesChange = (value) => {
-    console.log(value); // Should log the string value of the textarea
     setNotes(value);
   };
 
@@ -220,19 +218,19 @@ function CreateInvoice() {
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Sub Total:</p>
-              <h6 className="text-sm font-medium">{subTotal}</h6>
+              <h6 className="text-sm font-medium">{formatCurrency(subTotal / 100)}</h6>
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Discount:</p>
-              <h6 className="text-sm font-medium">{discountAmount}</h6>
+              <h6 className="text-sm font-medium">{formatCurrency(discountAmount / 100)}</h6>
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Tax:</p>
-              <h6 className="text-sm font-medium">{taxAmount}</h6>
+              <h6 className="text-sm font-medium">{formatCurrency(taxAmount / 100)}</h6>
             </div>
             <div className="flex-btn gap-4">
               <p className="text-sm font-extralight">Grand Total:</p>
-              <h6 className="text-sm font-medium text-green-600">${grandTotal}</h6>
+              <h6 className="text-sm font-medium text-green-600">{formatCurrency(grandTotal / 100)}</h6>
             </div>
             {/* notes */}
             <Textarea

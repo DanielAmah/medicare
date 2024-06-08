@@ -1,10 +1,8 @@
-import { transactionData } from '../Datas';
 import { PaymentTable } from '../Tables';
 import { useNavigate } from 'react-router-dom';
 
 function PaymentsUsed({ doctor, payments }) {
   const navigate = useNavigate();
-  // onClick event handler
   const handleEventClick = (id) => {
     navigate(`/payments/preview/${id}`);
   };

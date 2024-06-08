@@ -6,33 +6,14 @@ import { RiDeleteBin6Line, RiDeleteBinLine } from 'react-icons/ri';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { useDeletePatientMutation } from '../redux/services/patient';
+import { formatCurrency } from '../utils/core'
 
 const thclass = 'text-start text-sm font-medium py-3 px-2 whitespace-nowrap';
 const tdclass = 'text-start text-sm py-4 px-2 whitespace-nowrap';
 
 export function Transactiontable({ data, action, functions }) {
   const DropDown1 = [
-    // {
-    //   title: 'Edit',
-    //   icon: FiEdit,
-    //   onClick: (data) => {
-    //     functions.edit(data.id);
-    //   },
-    // },
-    // {
-    //   title: 'View',
-    //   icon: FiEye,
-    //   onClick: (data) => {
-    //     functions.preview(data.id);
-    //   },
-    // },
-    // {
-    //   title: 'Delete',
-    //   icon: RiDeleteBin6Line,
-    //   onClick: () => {
-    //     toast.error('This feature is not available yet');
-    //   },
-    // },
+
   ];
   return (
     <table className="table-auto w-full">
@@ -87,7 +68,7 @@ export function Transactiontable({ data, action, functions }) {
                 {item.status}
               </span>
             </td>
-            <td className={`${tdclass} font-semibold`}>{item.amount}</td>
+            <td className={`${tdclass} font-semibold`}>{formatCurrency(item.amount / 100)}</td>
             <td className={tdclass}>{item.method}</td>
             {action && (
               <td className={tdclass}>
@@ -105,17 +86,9 @@ export function Transactiontable({ data, action, functions }) {
   );
 }
 
-// invoice table
 export function InvoiceTable({ data }) {
   const navigate = useNavigate();
   const DropDown1 = [
-    // {
-    //   title: 'Edit',
-    //   icon: FiEdit,
-    //   onClick: (item) => {
-    //     navigate(`/invoices/edit/${item.id}`);
-    //   },
-    // },
     {
       title: 'View',
       icon: FiEye,
@@ -123,13 +96,6 @@ export function InvoiceTable({ data }) {
         navigate(`/invoices/preview/${item.id}`);
       },
     },
-    // {
-    //   title: 'Delete',
-    //   icon: RiDeleteBin6Line,
-    //   onClick: () => {
-    //     toast.error('This feature is not available yet');
-    //   },
-    // },
   ];
   return (
     <table className="table-auto w-full">
@@ -171,7 +137,7 @@ export function InvoiceTable({ data }) {
             </td>
             <td className={tdclass}>{item?.createdDate}</td>
             <td className={tdclass}>{item?.dueDate}</td>
-            <td className={`${tdclass} font-semibold`}>{item?.total}</td>
+            <td className={`${tdclass} font-semibold`}>{formatCurrency(item?.total / 100)}</td>
             <td className={tdclass}>
               <MenuSelect datas={DropDown1} item={item}>
                 <div className="bg-dry border text-main text-xl py-2 px-4 rounded-lg">
@@ -186,7 +152,6 @@ export function InvoiceTable({ data }) {
   );
 }
 
-// prescription table
 export function MedicineTable({ data, onEdit }) {
   const DropDown1 = [
     {
@@ -254,7 +219,6 @@ export function MedicineTable({ data, onEdit }) {
   );
 }
 
-// service table
 export function ServiceTable({ data, onEdit }) {
   const DropDown1 = [
     {
@@ -318,7 +282,6 @@ export function ServiceTable({ data, onEdit }) {
   );
 }
 
-// patient table
 export function PatientTable({ data, functions, used, handleDelete }) {
   const DropDown1 = (id) => {
     return !used
@@ -426,7 +389,6 @@ export function PatientTable({ data, functions, used, handleDelete }) {
   );
 }
 
-// doctor table
 export function DoctorsTable({ data, functions, doctor, handleDelete }) {
   const DropDown1 = (id) => {
     console.log(id, 'deleteID')
@@ -502,7 +464,6 @@ export function DoctorsTable({ data, functions, doctor, handleDelete }) {
   );
 }
 
-// appointment table
 export function AppointmentTable({ data, functions, doctor }) {
   return (
     <table className="table-auto w-full">
@@ -563,7 +524,6 @@ export function AppointmentTable({ data, functions, doctor }) {
   );
 }
 
-// payment table
 export function PaymentTable({ data, functions, doctor }) {
   return (
     <table className="table-auto w-full">
@@ -607,7 +567,7 @@ export function PaymentTable({ data, functions, doctor }) {
               </span>
             </td>
             <td className={tdclass}>
-              <p className="text-xs font-semibold">{`$${item.amount}`}</p>
+              <p className="text-xs font-semibold">{`${formatCurrency(item.amount / 100)}`}</p>
             </td>
             <td className={tdclass}>
               <p className="text-xs">{item.method}</p>
@@ -628,7 +588,6 @@ export function PaymentTable({ data, functions, doctor }) {
   );
 }
 
-// invoice used table
 export function InvoiceUsedTable({ data, functions }) {
   return (
     <table className="table-auto w-full">
@@ -658,7 +617,7 @@ export function InvoiceUsedTable({ data, functions }) {
             </td>
 
             <td className={tdclass}>
-              <p className="text-xs font-semibold">{`$${item.total}`}</p>
+              <p className="text-xs font-semibold">{`${formatCurrency(item.total / 100)}`}</p>
             </td>
 
             <td className={tdclass}>
@@ -698,7 +657,6 @@ export function InvoiceUsedTable({ data, functions }) {
   );
 }
 
-// invoice table
 export function InvoiceProductsTable({ data, functions, button }) {
   return (
     <table className="table-auto w-full">
@@ -726,7 +684,7 @@ export function InvoiceProductsTable({ data, functions, button }) {
             <td className={`${tdclass}  font-medium`}>{item.name}</td>
             <td className={`${tdclass} text-xs`}>{item.price / 100}</td>
             <td className={tdclass}>{item.quantity}</td>
-            <td className={tdclass}>{item.price * item?.quantity}</td>
+            <td className={tdclass}>{(item.price * item?.quantity) / 100}</td>
             {button && (
               <td className={tdclass}>
                 <button
@@ -744,7 +702,6 @@ export function InvoiceProductsTable({ data, functions, button }) {
   );
 }
 
-// medicine Dosage table
 
 export function MedicineDosageTable({ data, functions, button }) {
   const thclasse = 'text-start text-xs font-medium py-3 px-2 whitespace-nowrap';

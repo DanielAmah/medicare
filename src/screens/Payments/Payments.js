@@ -14,6 +14,7 @@ import { BsCalendarMonth } from 'react-icons/bs';
 import { useNavigate } from 'react-router-dom';
 import { useGetPaymentSummaryQuery } from '../../redux/services/payment';
 import { useGetRecentTransactionsQuery } from '../../redux/services/dashboard'
+import { formatCurrency } from '../../utils/core'
 
 function Payments() {
   const { data } = useGetPaymentSummaryQuery({})
@@ -26,25 +27,13 @@ function Payments() {
   const editPayment = (id) => {
     navigate(`/payments/edit/${id}`);
   };
-  // preview
   const previewPayment = (id) => {
     navigate(`/payments/preview/${id}`);
   };
 
   return (
     <Layout>
-      {/* add button */}
-      {/* <button
-        onClick={() => {
-          toast.error('Exporting is not available yet');
-        }}
-        className="w-16 hover:w-44 group transitions hover:h-14 h-16 border border-border z-50 bg-subMain text-white rounded-full flex-rows gap-4 fixed bottom-8 right-12 button-fb"
-      >
-        <p className="hidden text-sm group-hover:block">Export</p>
-        <MdOutlineCloudDownload className="text-2xl" />
-      </button> */}
       <h1 className="text-xl font-semibold">Payments</h1>
-      {/* boxes */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
         {data?.map((box) => (
           <div
@@ -53,9 +42,9 @@ function Payments() {
           >
             <div className="w-3/4">
               <h2 className="text-sm font-medium">{box.title}</h2>
-              <h2 className="text-xl my-6 font-medium">{box.value}</h2>
+              <h2 className="text-xl my-6 font-medium">{formatCurrency(box.value)}</h2>
               <p className="text-xs text-textGray">
-                You made <span className={box.color[1]}>{box.value}</span>{' '}
+                You made <span className={box.color[1]}>{formatCurrency(box.value)}</span>{' '}
                 transactions{' '}
                 {box.title === 'Today Payments'
                   ? 'today'
@@ -83,42 +72,6 @@ function Payments() {
         data-aos-offset="200"
         className="bg-white my-8 rounded-xl border-[1px] border-border p-5"
       >
-        {/* <div className="grid lg:grid-cols-5 grid-cols-1 xs:grid-cols-2 md:grid-cols-3 gap-2">
-          <input
-            type="text"
-            placeholder='Search "Patients"'
-            className="h-14 text-sm text-main rounded-md bg-dry border border-border px-4"
-          />
-     
-          {sorts.map((item) => (
-            <Select
-              key={item.id}
-              selectedPerson={item.selected}
-              setSelectedPerson={item.setSelected}
-              datas={item.datas}
-            >
-              <div className="h-14 w-full text-xs text-main rounded-md bg-dry border border-border px-4 flex items-center justify-between">
-                <p>{item.selected.name}</p>
-                <BiChevronDown className="text-xl" />
-              </div>
-            </Select>
-          ))}
-
-          <FromToDate
-            startDate={startDate}
-            endDate={endDate}
-            bg="bg-dry"
-            onChange={(update) => setDateRange(update)}
-          />
-
-          <Button
-            label="Filter"
-            Icon={MdFilterList}
-            onClick={() => {
-              toast.error('Filter data is not available yet');
-            }}
-          />
-        </div> */}
         <div className="mt-8 w-full overflow-x-scroll">
           <Transactiontable
             data={recentTransactionsData?.transactions}

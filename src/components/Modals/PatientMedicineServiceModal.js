@@ -14,7 +14,7 @@ function PatientMedicineServiceModal({ closeModal, isOpen, patient, setSelected,
   console.log(selected, 'selected')
   const datas = patient
     ? patientsData
-    : // combine medicine and services data and sort by name
+    :
     getServicesData
 
   return (

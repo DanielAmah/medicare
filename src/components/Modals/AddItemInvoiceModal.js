@@ -11,30 +11,6 @@ function AddItemModal({ closeModal, isOpen, item, setItem, addItem }) {
   const [quantity, setQuantity] = useState(0)
   const [open, setOpen] = useState(false);
 
-  // console.log(item, 'itemxxxqq')
-
-  // const summery = [
-  //   {
-  //     title: 'Service Name',
-  //     value: 'Paracetamol',
-  //     color: false,
-  //   },
-  //   {
-  //     title: 'Item Price',
-  //     value: `$ 5500`,
-  //     color: false,
-  //   },
-  //   {
-  //     title: 'Quantity',
-  //     value: 6,
-  //     color: false,
-  //   },
-  //   {
-  //     title: 'Total',
-  //     value: `$ 33000`,
-  //     color: true,
-  //   },
-  // ];
 
   const handleSaveItem = () => {
     addItem({

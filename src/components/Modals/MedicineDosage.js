@@ -16,7 +16,7 @@ function MedicineDosageModal({ closeModal, isOpen }) {
       };
     })
   );
-  // on change dosage
+  
   const onChangeDosage = (e) => {
     const { name, checked } = e.target;
     const newDosage = dosage.map((item) => {

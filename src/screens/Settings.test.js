@@ -28,10 +28,8 @@ const mockStore = configureStore({
 describe('Settings Component Tests', () => {
 
   beforeEach(() => {
-    // Mock authentication data
     getData.mockReturnValue({ userId: '123', auth_token: 'valid_token', exp: Date.now() / 1000 + 3600 });
 
-    // Mock user data from the API
     const mockApiData = {
       data: {
         name: 'Dr. Daudi Mburuge',
@@ -41,7 +39,6 @@ describe('Settings Component Tests', () => {
       isLoading: false,
     };
 
-    // Mock the query hook
     jest.spyOn(api, 'useGetDoctorQuery').mockReturnValue(mockApiData);
   });
 

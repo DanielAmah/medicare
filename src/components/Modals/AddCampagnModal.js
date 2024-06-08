@@ -10,7 +10,6 @@ import SmsComp from '../Campaign/SmsComp';
 function CampaignModal({ closeModal, isOpen, data }) {
   const [indexs, setIndexs] = React.useState(0);
 
-  // change tab
   const changeTab = (value) => {
     setIndexs(value);
   };
@@ -34,7 +33,6 @@ function CampaignModal({ closeModal, isOpen, data }) {
     },
   ];
 
-  // edit
   useEffect(() => {
     if (data?.id) {
       if (data?.type === 'email') {

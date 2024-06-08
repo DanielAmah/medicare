@@ -25,7 +25,6 @@ function Receptions() {
   return (
     <Layout>
       {
-        // add doctor modal
         isOpen && (
           <AddDoctorModal
             closeModal={onCloseModal}

@@ -28,7 +28,6 @@ function MedicalRecodModal({ closeModal, isOpen, datas }) {
             </div>
           </div>
         ))}
-        {/* visual sign */}
         <div className="grid grid-cols-12 gap-4 w-full">
           <div className="col-span-12 md:col-span-3">
             <p className="text-sm font-medium">Vital Signs:</p>
@@ -36,7 +35,6 @@ function MedicalRecodModal({ closeModal, isOpen, datas }) {
           <div className="col-span-12 md:col-span-9 border-[1px] border-border rounded-xl p-6">
             <p className="text-xs text-main font-light leading-5">
               {datas?.vitalSigns?.map((item) => (
-                // separate each item with comma
                 <span key={item} className="mr-1">
                   {item},
                 </span>
@@ -57,14 +55,12 @@ function MedicalRecodModal({ closeModal, isOpen, datas }) {
             />
           </div>
         </div>
-        {/* attachments */}
         <div className="grid grid-cols-12 gap-4 w-full">
           <div className="col-span-12 md:col-span-3">
             <p className="text-sm font-medium">Attachments:</p>
           </div>
           <div className="col-span-12 md:col-span-9 border-[1px] border-border rounded-xl p-6 xs:grid-cols-2 md:grid-cols-4 grid gap-4">
             {
-              // show attachments
               datas?.attachments?.map((item) => (
                 <img
                   key={item}

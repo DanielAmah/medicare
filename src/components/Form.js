@@ -27,7 +27,6 @@ export function Input({ label, name, type, color, placeholder, register, onChang
   );
 }
 
-// button
 
 export function Button({ label, onClick, loading, Icon }) {
   return (
@@ -48,7 +47,6 @@ export function Button({ label, onClick, loading, Icon }) {
   );
 }
 
-// select
 
 export function MenuSelect({ children, datas, item: data }) {
   return (
@@ -72,7 +70,6 @@ export function MenuSelect({ children, datas, item: data }) {
   );
 }
 
-// select 2
 
 export function Select({ children, selectedPerson, setSelectedPerson, datas }) {
   return (
@@ -98,7 +95,6 @@ export function Select({ children, selectedPerson, setSelectedPerson, datas }) {
   );
 }
 
-// switch
 
 export function Switchi({ checked, onChange }) {
   return (
@@ -116,8 +112,6 @@ export function Switchi({ checked, onChange }) {
     </Switch>
   );
 }
-
-// textarea
 
 export function Textarea({ label, name, register, placeholder, rows, onChange, value }) {
   return (
@@ -137,7 +131,6 @@ export function Textarea({ label, name, register, placeholder, rows, onChange, v
   );
 }
 
-// date picker
 
 export function DatePickerComp({ label, startDate, onChange }) {
   return (
@@ -152,7 +145,6 @@ export function DatePickerComp({ label, startDate, onChange }) {
   );
 }
 
-// time picker
 
 export function TimePickerComp({ label, startDate, onChange }) {
   return (
@@ -172,7 +164,6 @@ export function TimePickerComp({ label, startDate, onChange }) {
   );
 }
 
-// checkbox
 
 export function Checkbox({ label, name, onChange, checked }) {
   return (
@@ -201,7 +192,6 @@ export function Checkbox({ label, name, onChange, checked }) {
   );
 }
 
-// from to date picker
 
 export function FromToDate({ label, startDate, onChange, endDate, bg }) {
   return (

@@ -32,7 +32,6 @@ function Doctors() {
   return (
     <Layout>
       {
-        // add doctor modal
         isOpen && (
           <AddDoctorModal
             closeModal={onCloseModal}

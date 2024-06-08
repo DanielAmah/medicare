@@ -32,7 +32,6 @@ function NewMedicalRecode() {
     })
   );
 
-  // on change treatmeants
   const onChangeTreatmeants = (e) => {
     const { name, checked } = e.target;
     const newTreatmeants = treatmeants.map((item) => {
@@ -50,7 +49,6 @@ function NewMedicalRecode() {
   return (
     <Layout>
       {
-        // modal
         isOpen && (
           <MedicineDosageModal
             isOpen={isOpen}

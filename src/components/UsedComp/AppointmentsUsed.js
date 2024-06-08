@@ -7,13 +7,12 @@ function AppointmentsUsed({ doctor, appointments }) {
   const [open, setOpen] = useState(false);
   const [data, setData] = useState({});
 
-  // onClick event handler
   const handleEventClick = (event) => {
     console.log(event, 'events')
     setData(event);
     setOpen(!open);
   };
-  // handle modal close
+
   const handleClose = () => {
     setOpen(!open);
     setData({});

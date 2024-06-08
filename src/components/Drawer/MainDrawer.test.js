@@ -12,7 +12,6 @@ describe('MainDrawer', () => {
       </MainDrawer>
     );
 
-    // Check if the drawer is visible and contains the correct content
     expect(getByText('Drawer Content')).toBeInTheDocument();
   });
 });

@@ -4,7 +4,6 @@ import userEvent from '@testing-library/user-event';
 import SmsComp from './SmsComp';
 import { toast } from 'react-hot-toast';
 
-// Mock react-hot-toast
 jest.mock('react-hot-toast', () => ({
   toast: {
     error: jest.fn()

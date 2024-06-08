@@ -24,7 +24,6 @@ const sendToData = [
 function SmsComp({ data }) {
   const [sendTo, setSendTo] = React.useState(sendToData[0].name);
 
-  // useEffect
   React.useEffect(() => {
     if (data?.id) {
       setSendTo(data.sendTo);

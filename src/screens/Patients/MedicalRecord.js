@@ -7,6 +7,7 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { medicalRecodData } from '../../components/Datas';
 import MedicalRecodModal from '../../components/Modals/MedicalRecodModal';
 import { useNavigate } from 'react-router-dom';
+import { formatCurrency } from '../../utils/core'
 
 function MedicalRecord() {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -15,7 +16,6 @@ function MedicalRecord() {
   return (
     <>
       {
-        // Modal
         isOpen && (
           <MedicalRecodModal
             closeModal={() => {
@@ -55,7 +55,6 @@ function MedicalRecord() {
                 <p key={item.id} className="text-xs text-main font-light">
                   <span className="font-medium">{item?.title}:</span>{' '}
                   {
-                    // if value character is more than 40, show only 40 characters
                     item?.value?.length > 40
                       ? `${item?.value?.slice(0, 40)}...`
                       : item?.value
@@ -66,8 +65,8 @@ function MedicalRecord() {
             {/* price */}
             <div className="col-span-12 md:col-span-2">
               <p className="text-xs text-subMain font-semibold">
-                <span className="font-light text-main">(Tsh)</span>{' '}
-                {data?.amount}
+                <span className="font-light text-main">($)</span>{' '}
+                {formatCurrency(data?.amount || 0 / 100)}
               </p>
             </div>
             {/* actions */}
