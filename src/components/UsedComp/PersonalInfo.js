@@ -64,7 +64,6 @@ function PersonalInfo({ titles, settings }) {
   };
 
   const handleFileChange = (imageUrl) => {
-    // console.log(imageUrl, 'files')
     setFormData({
       ...formData,
       profileImage: imageUrl
@@ -178,19 +177,9 @@ function PersonalInfo({ titles, settings }) {
         )}
         {/* submit */}
         <div className="grid grid-cols-1 sm:grid-cols-1 gap-4 w-full mt-10">
-          {/* <Button
-            label={'Delete Account'}
-            Icon={RiDeleteBin5Line}
-            onClick={() => {
-              toast.error('This feature is not available yet');
-            }}
-          /> */}
           <Button
             label={'Save Changes'}
             Icon={HiOutlineCheckCircle}
-          // onClick={() => {
-          //   toast.error('This feature is not available yet');
-          // }}
           />
         </div>
       </form>

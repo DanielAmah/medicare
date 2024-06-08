@@ -26,7 +26,7 @@ function EmailComp({ data }) {
   const [sendTo, setSendTo] = React.useState(sendToData[0].name);
   const [image, setImage] = React.useState(null);
 
-  // useEffect
+
   React.useEffect(() => {
     if (data?.id) {
       setSendTo(data.sendTo);

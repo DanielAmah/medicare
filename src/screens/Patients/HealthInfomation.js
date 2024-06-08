@@ -5,10 +5,6 @@ import { BiChevronDown } from 'react-icons/bi';
 import { HiOutlineCheckCircle } from 'react-icons/hi';
 import { toast } from 'react-hot-toast';
 
-// Health Information
-// allergies
-// habits
-// Medical History
 
 function HealthInfomation() {
   const [bloodType, setBloodType] = React.useState(
@@ -16,9 +12,7 @@ function HealthInfomation() {
   );
   return (
     <div className="flex-colo gap-4">
-      {/* uploader */}
       <div className="flex gap-3 flex-col w-full col-span-6">
-        {/* select  */}
         <div className="flex w-full flex-col gap-3">
           <p className="text-black text-sm">Blood Group</p>
           <Select
@@ -32,25 +26,20 @@ function HealthInfomation() {
           </Select>
         </div>
 
-        {/* weight */}
         <Input label="Weight" color={true} type="text" placeholder={'60kg'} />
-        {/* height */}
         <Input label="Height" color={true} type="text" placeholder={'5.5ft'} />
-        {/* allergies */}
         <Textarea
           label="Allergies"
           color={true}
           rows={3}
           placeholder={'beans, nuts, etc'}
         />
-        {/* habits */}
         <Textarea
           label="Habits"
           color={true}
           rows={3}
           placeholder={'smoking, drinking, etc'}
         />
-        {/* Medical History */}
         <Textarea
           label="Medical History"
           color={true}
@@ -58,7 +47,6 @@ function HealthInfomation() {
           placeholder={'diabetes,  malaria, glaucoma, etc'}
         />
 
-        {/* submit */}
         <Button
           label={'Save Changes'}
           Icon={HiOutlineCheckCircle}

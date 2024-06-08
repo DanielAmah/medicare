@@ -4,7 +4,6 @@ import MenuDrawer from './MenuDrawer';
 import { MemoryRouter } from 'react-router-dom';
 import MainDrawer from './MainDrawer';
 
-// Optional: Mock MainDrawer if you want to isolate the test from MainDrawer's implementation
 
 const mockUser = { name: 'John Doe', isLoggedIn: true };
 
@@ -23,15 +22,12 @@ describe('MenuDrawer', () => {
     render(
       <MemoryRouter><MenuDrawer isOpen={true} toggleDrawer={mockToggleDrawer} /></MemoryRouter>);
 
-    // Check if MainDrawer is passed the correct props
     const drawerElement = screen.getByTestId('main-drawer');
     expect(drawerElement).toBeInTheDocument();
     expect(drawerElement.getAttribute('data-open')).toBe('true');
 
-    // Check that Sidebar is being rendered
-    expect(screen.getByText('Patients')).toBeInTheDocument(); // Adjust this based on actual sidebar content
+    expect(screen.getByText('Patients')).toBeInTheDocument();
 
-    // Simulate a close action
     fireEvent.click(drawerElement);
     expect(mockToggleDrawer).toHaveBeenCalled();
   });

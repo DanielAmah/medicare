@@ -42,7 +42,6 @@ export const Empty = ({ text }) => {
   );
 };
 
-// copy
 export const Copy = ({ text, children }) => {
   return <CopyToClipboard text={text}>{children}</CopyToClipboard>;
 };

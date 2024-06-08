@@ -9,42 +9,34 @@ import AddAppointmentModal from '../components/Modals/AddApointmentModal';
 import { servicesData } from '../components/Datas';
 import { useGetAppointmentsQuery } from '../redux/services/appointment';
 
-// custom toolbar
+
 const CustomToolbar = (toolbar) => {
-  // today button handler
   const goToBack = () => {
     toolbar.date.setMonth(toolbar.date.getMonth() - 1);
     toolbar.onNavigate('prev');
   };
 
-  // next button handler
   const goToNext = () => {
     toolbar.date.setMonth(toolbar.date.getMonth() + 1);
     toolbar.onNavigate('next');
   };
 
-  // today button handler
   const goToCurrent = () => {
     toolbar.onNavigate('TODAY');
   };
 
-  // month button handler
   const goToMonth = () => {
     toolbar.onView('month');
   };
 
-  // week button handler
   const goToWeek = () => {
-    console.log(toolbar, toolbar.onView('week'), 'what is really going in here')
     toolbar.onView('week');
   };
 
-  // day button handler
   const goToDay = () => {
     toolbar.onView('day');
   };
 
-  // view button group
   const viewNamesGroup = [
     { view: 'month', label: 'Month' },
     { view: 'week', label: 'Week' },
@@ -112,19 +104,20 @@ function Appointments() {
   const localizer = momentLocalizer(moment);
   const [open, setOpen] = React.useState(false);
   const [data, setData] = React.useState({});
-  console.log(appointmentData, 'appointmentData')
-  // handle modal close
+
   const handleClose = () => {
     setOpen(!open);
     setData({});
   };
 
-
-  // onClick event handler
   const handleEventClick = (event) => {
     setData(appointmentData);
     setOpen(!open);
   };
+
+  const { defaultDate } = React.useMemo(() => ({
+    defaultDate: new Date()
+  }), [])
 
   return (
     <Layout>
@@ -137,7 +130,6 @@ function Appointments() {
           }}
         />
       )}
-      {/* calender */}
       <button
         onClick={handleClose}
         className="w-16 animate-bounce h-16 border border-border z-50 bg-subMain text-white rounded-full flex-colo fixed bottom-8 right-12 button-fb"
@@ -151,17 +143,15 @@ function Appointments() {
           startAccessor={(event) => moment(event.start).toDate()}
           endAccessor={(event) => moment(event.end).toDate()}
           style={{
-            // height fix screen
             height: 900,
             marginBottom: 50,
           }}
           onSelectEvent={(event) => handleEventClick(event)}
-          defaultDate={new Date()}
+          defaultDate={defaultDate}
           timeslots={1}
           resizable
           step={60}
           selectable={true}
-          // custom event style
           eventPropGetter={(event) => {
             const style = {
               backgroundColor: '#66B5A3',
@@ -177,7 +167,6 @@ function Appointments() {
               style,
             };
           }}
-          // custom date style
           dayPropGetter={(date) => {
             const backgroundColor = 'white';
             const style = {
@@ -187,7 +176,6 @@ function Appointments() {
               style,
             };
           }}
-          // remove agenda view
           views={['month', 'day', 'week']}
           toolbar={true}
           components={{ toolbar: CustomToolbar }}

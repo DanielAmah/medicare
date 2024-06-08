@@ -21,19 +21,12 @@ function Settings() {
       name: 'Personal Information',
       icon: BiUserPlus,
     },
-    // {
-    //   id: 2,
-    //   name: 'Change Password',
-    //   icon: RiLockPasswordLine,
-    // },
   ];
 
   const tabPanel = () => {
     switch (activeTab) {
       case 1:
         return <PersonalInfo titles={true} userInfo={userInfo} settings={true} />;
-      // case 2:
-      //   return <ChangePassword />;
       default:
         return;
     }

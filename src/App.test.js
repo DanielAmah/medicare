@@ -1,8 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
 import { getData } from './utils/core';
-import { AUTH_TOKEN_KEY } from './utils/storage';
-// import { BrowserRouter } from 'react-router-dom';
+
 
 jest.mock('./utils/core', () => ({
   getData: jest.fn(),

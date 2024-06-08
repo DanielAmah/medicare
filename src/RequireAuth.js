@@ -1,13 +1,11 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux'; // Assuming you store your auth state in Redux
 import { getData } from './utils/core';
 import { AUTH_TOKEN_KEY } from './utils/storage';
 
 
 const RequireAuth = ({ children }) => {
   const location = useLocation();
-  // const auth = useSelector(state => state.auth); // Adjust path according to your state management
   const auth = getData(AUTH_TOKEN_KEY)
 
   const checkTokenExpired = (exp) => {

@@ -28,7 +28,6 @@ function EditInvoice() {
   const [itemOpen, setItemOpen] = useState(false);
   const [currency, setCurrency] = useState(sortsDatas.currency[0]);
 
-  // date picker
   const onChangeDates = (update) => {
     setDateRange(update);
   };
