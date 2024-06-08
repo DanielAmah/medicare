@@ -13,7 +13,7 @@ Medicare is a patient management system
 2. Install project dependencies:
 
 ```shell
-npm install
+yarn install
 ```
 
 ## Usage
@@ -21,7 +21,7 @@ npm install
 1. Start the development server:
 
 ```shell
-npm start
+yarn start
 ```
 
 2. Open your browser and visit `http://localhost:3000` to view the application.
